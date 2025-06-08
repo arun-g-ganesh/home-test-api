@@ -5,35 +5,35 @@ This project is a take-home API testing assignment using the [Karate](https://gi
 ##  Project Structure
 
 ```
-src
-└── test
-    └── java
-        └── inventory
-            ├── common
-            │   └── utilities.feature     # Contains reusable JS functions (e.g., dynamic product generator)
-            ├── inventoryapi.feature      # Main feature file testing API endpoints
-            └── inventoryTest.java        # JUnit test runner
-```
+home_test_api/ ├── src/ 
+               │ └── test/ 
+               │ └── java/ 
+               │ └── inventoryapi/ 
+               │ ├── features/ 
+               │ │ ├── addInventory.feature 
+               │ │ ├── addInventoryError.feature 
+               │ │ ├── addMissingInventory.feature 
+               │ │ ├── filterInventory.feature 
+               │ │ ├── getInventory.feature 
+               │ │ └── verifyProduct.feature 
+               │ ├── testData/ 
+               │ │ ├── addProduct.json 
+               │ │ ├── duplicateProduct.json 
+               │ │ ├── errorMessages.json 
+               │ │ ├── filter.json 
+               │ │ ├── missingField.json 
+               │ │ └── responseData.json 
+               │ └── InventoryTest.java 
+               ├── karate-config.js 
+               ├── pom.xml 
+               └── README.md
+                ```
 
 ---
 
 ##  Setup Instructions
 
-### 1. Clone or Initialize This Repo
-
-If you haven't already created a GitHub repository:
-
-```bash
-# Initialize local repo and push to GitHub
-git init
-git add .
-git commit -m "Initial commit - Karate API test assignment"
-git branch -M main
-git remote add origin https://github.com/your-username/home-test-api.git
-git push -u origin main
-```
-
-If already cloned:
+### 1. Clone This Repo
 
 ```bash
 git clone https://github.com/your-username/home-test-api.git
@@ -52,29 +52,55 @@ API will be accessible at:
 
 ---
 
-##  Run the Tests
+## 🚀 How to Run Tests
 
-Ensure you have Maven installed. Then, from the project root:
+### 🧰 Prerequisites
+
+- Java 8 or higher
+- Maven installed (`mvn -v`)
+- IntelliJ IDEA or any Java IDE
+- Internet connection (for Maven dependencies)
+
+### ▶️ Run all tests
 
 ```bash
-mvn test
-```
+mvn clean test
+
+▶️ Run a specific feature
+
+mvn test -Dkarate.options="classpath:inventoryapi/features/addInventory.feature"
+
 
 ---
 
+
 ##  Test Scenarios Covered
 
-###  `inventoryapi.feature`
+Features
+Each .feature file inside inventoryapi/features covers different aspects of the Inventory API:
+addInventory.feature: Tests valid product addition
+addInventoryError.feature: Handles error responses for invalid inputs
+addMissingInventory.feature: Tests behavior when fields are missing
+filterInventory.feature: Validates product filtering based on criteria
+getInventory.feature: Checks product retrieval API
+verifyProduct.feature: Asserts correct product details
 
-| Scenario | Endpoint | Description |
-|----------|----------|-------------|
-| Get all menu items | `GET /api/inventory` | Checks minimum item count and required keys |
-| Filter by ID | `GET /api/inventory/filter?id=3` | Verifies correct item details for known ID |
-| Add new item (dynamic) | `POST /api/inventory/add` | Adds a randomly generated product |
-| Add existing item | `POST /api/inventory/add` | Attempts re-add of same ID (expects failure) |
-| Missing info | `POST /api/inventory/add` | Posts incomplete JSON (expects 400 + error msg) |
-| Validate added item | `GET /api/inventory` | Confirms the dynamically added item is present |
 
+---
+Test Data
+The testData folder contains JSON files used in test scenarios:
+addProduct.json – valid product template
+duplicateProduct.json – duplicate input for negative test
+errorMessages.json – expected error strings
+filter.json – filter criteria
+missingField.json – payloads missing fields
+responseData.json – expected response payloads
+
+
+---
+Configuration
+karate-config.js is the environment config file where base URLs and environment-specific variables are set.
+You can extend this file to support multiple environments (e.g., dev, QA, staging).
 ---
 
 ## 🛠️ Tools Used
@@ -89,7 +115,6 @@ mvn test
 
 ##  Notes
 
-- `utilities.feature` contains a JS function to generate dynamic products.
 - Data is randomized to avoid failures on re-runs due to ID duplication.
 
 ---

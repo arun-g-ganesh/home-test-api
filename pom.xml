@@ -33,8 +33,27 @@
             </testResource>
         </testResources>
         <plugins>
-
+            <!-- Existing surefire or failsafe plugin here -->
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>zip-karate-reports</id>
+                        <phase>verify</phase> <!-- runs after tests -->
+                        <configuration>
+                            <target>
+                                <exec executable="./zip-karate-report.sh">
+                                    <env key="PATH" path="/bin:/usr/bin"/>
+                                </exec>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
-
 </project>
