@@ -66,18 +66,6 @@ docker run -p 3100:3100 automaticbytes/demo-app
 - IDE (e.g., IntelliJ IDEA)
 - Internet (for Maven dependencies)
 
-### ✅ Run All Tests
-
-```bash
-mvn clean test
-```
-
-### ✅ Run Tests by Feature File
-
-```bash
-mvn test -Dkarate.options="classpath:inventoryapi/features/addInventory.feature"
-```
-
 ### ✅ Run Tests by Tag
 
 Run all inventory tests (all 6 features):
@@ -90,6 +78,11 @@ Run only a specific scenario using its tag (e.g., `@getAll`):
 
 ```bash
 mvn test -Dkarate.options="@getAll"
+```
+### ✅ Run Tests by Feature File
+
+```bash
+mvn test -Dkarate.options="classpath:inventoryapi/features/addInventory.feature"
 ```
 
 ---
@@ -163,9 +156,3 @@ Test data files are available under `inventoryapi/testData/`:
     - A scenario-specific tag (e.g., `@getAll`, `@addItem`) for fine-grained test runs.
 
 ---
-
-## 📨 Submission Instructions
-
-1. Commit and push your code to a **public GitHub repository**.
-2. Include this `README.md` and the zipped test report.
-3. Share the repository link with the recruiter as instructed.
