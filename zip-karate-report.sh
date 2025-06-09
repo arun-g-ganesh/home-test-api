@@ -18,5 +18,3 @@ else
     echo "No karate-reports directory found. Did the tests run?"
     exit 1
 fi
-
-z+

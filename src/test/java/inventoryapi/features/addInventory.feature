@@ -1,4 +1,5 @@
 @inventory
+@addItem
 Feature: Inventory API Tests
 
   Background:
@@ -7,7 +8,6 @@ Feature: Inventory API Tests
     * def productId = Math.floor(Math.random() * 1000);
     * set productData.id = productId
 
-  @addItem
   Scenario: Add a dynamically generated product
     Given path '/add'
     And request productData

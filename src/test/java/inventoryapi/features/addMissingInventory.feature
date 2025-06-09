@@ -1,4 +1,5 @@
 @inventory
+@addMissingFields
 Feature: Inventory API Tests
 
   Background:
@@ -6,7 +7,6 @@ Feature: Inventory API Tests
     * def missingFieldData = read("../testData/missingField.json");
     * def errorMessage = read("../testData/errorMessages.json");
 
-  @addMissingFields
   Scenario: Add item with missing information
     Given path '/add'
     And request missingFieldData

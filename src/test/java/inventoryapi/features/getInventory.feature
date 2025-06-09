@@ -1,11 +1,11 @@
 @inventory
+  @getAll
 Feature: Inventory API Tests
 
   Background:
     * url baseUrl
     * def responseData = read("../testData/responseData.json");
 
-  @getAll
   Scenario: Get all menu items
     When method get
     Then status 200

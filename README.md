@@ -1,120 +1,171 @@
-# Home Test API - Karate BDD Framework
+# 🧪 Home Test API - Karate BDD Framework
 
-This project is a take-home API testing assignment using the [Karate](https://github.com/karatelabs/karate) BDD testing framework for Java and Maven. It automates tests for an inventory-based API running via Docker.
-
-##  Project Structure
-
-```
-home_test_api/ ├── src/ 
-               │ └── test/ 
-               │ └── java/ 
-               │ └── inventoryapi/ 
-               │ ├── features/ 
-               │ │ ├── addInventory.feature 
-               │ │ ├── addInventoryError.feature 
-               │ │ ├── addMissingInventory.feature 
-               │ │ ├── filterInventory.feature 
-               │ │ ├── getInventory.feature 
-               │ │ └── verifyProduct.feature 
-               │ ├── testData/ 
-               │ │ ├── addProduct.json 
-               │ │ ├── duplicateProduct.json 
-               │ │ ├── errorMessages.json 
-               │ │ ├── filter.json 
-               │ │ ├── missingField.json 
-               │ │ └── responseData.json 
-               │ └── InventoryTest.java 
-               ├── karate-config.js 
-               ├── pom.xml 
-               └── README.md
-                ```
+This project is a take-home API testing assignment using the **Karate BDD testing framework** for Java and Maven. It automates test scenarios for an inventory-based API served via Docker.
 
 ---
 
-##  Setup Instructions
+## 📁 Project Structure
 
-### 1. Clone This Repo
+```
+home_test_api/
+├── src/
+│   └── test/
+│       └── java/
+│           └── inventoryapi/
+│               ├── features/
+│               │   ├── addInventory.feature
+│               │   ├── addInventoryError.feature
+│               │   ├── addMissingInventory.feature
+│               │   ├── filterInventory.feature
+│               │   ├── getInventory.feature
+│               │   └── verifyProduct.feature
+│               ├── testData/
+│               │   ├── addProduct.json
+│               │   ├── duplicateProduct.json
+│               │   ├── errorMessages.json
+│               │   ├── filter.json
+│               │   ├── missingField.json
+│               │   └── responseData.json
+│               └── InventoryTest.java
+├── karate-config.js
+├── pom.xml
+├── zip-karate-reports.sh
+└── README.md
+```
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/your-username/home-test-api.git
 cd home-test-api
 ```
 
-### 2. Start the API with Docker
+### 2. Start the API Using Docker
 
 ```bash
 docker pull automaticbytes/demo-app
 docker run -p 3100:3100 automaticbytes/demo-app
 ```
 
-API will be accessible at:  
-`http://localhost:3100/api`
+- The API will now be accessible at:  
+  **`http://localhost:3100/api`**
 
 ---
 
-## 🚀 How to Run Tests
+## ▶️ How to Run Tests
 
 ### 🧰 Prerequisites
 
 - Java 8 or higher
 - Maven installed (`mvn -v`)
-- IntelliJ IDEA or any Java IDE
-- Internet connection (for Maven dependencies)
+- Git + GitHub
+- IDE (e.g., IntelliJ IDEA)
+- Internet (for Maven dependencies)
 
-### ▶️ Run all tests
+### ✅ Run All Tests
 
 ```bash
 mvn clean test
+```
 
-▶️ Run a specific feature
+### ✅ Run Tests by Feature File
 
+```bash
 mvn test -Dkarate.options="classpath:inventoryapi/features/addInventory.feature"
+```
 
+### ✅ Run Tests by Tag
+
+Run all inventory tests (all 6 features):
+
+```bash
+mvn test -Dkarate.options="@inventory"
+```
+
+Run only a specific scenario using its tag (e.g., `@getAll`):
+
+```bash
+mvn test -Dkarate.options="@getAll"
+```
+
+---
+
+## 📦 Reports
+
+After each test run, reports are generated inside the `reports/` directory.
+
+### 📁 To Zip the Karate Reports
+
+```bash
+./zip-karate-reports.sh
+```
+
+This will generate a `.zip` archive inside the `reports/` folder containing the Karate HTML report.
 
 ---
 
+## 📑 Test Scenarios Covered
 
-##  Test Scenarios Covered
+Each `.feature` file in `inventoryapi/features` covers a specific functionality of the Inventory API:
 
-Features
-Each .feature file inside inventoryapi/features covers different aspects of the Inventory API:
-addInventory.feature: Tests valid product addition
-addInventoryError.feature: Handles error responses for invalid inputs
-addMissingInventory.feature: Tests behavior when fields are missing
-filterInventory.feature: Validates product filtering based on criteria
-getInventory.feature: Checks product retrieval API
-verifyProduct.feature: Asserts correct product details
-
-
----
-Test Data
-The testData folder contains JSON files used in test scenarios:
-addProduct.json – valid product template
-duplicateProduct.json – duplicate input for negative test
-errorMessages.json – expected error strings
-filter.json – filter criteria
-missingField.json – payloads missing fields
-responseData.json – expected response payloads
-
+| Feature File              | Purpose                                               |
+|---------------------------|--------------------------------------------------------|
+| `addInventory.feature`    | Adds a valid product to the inventory                 |
+| `addInventoryError.feature` | Tries to add a product with duplicate ID              |
+| `addMissingInventory.feature` | Adds a product with missing required fields         |
+| `filterInventory.feature` | Filters product by ID                                 |
+| `getInventory.feature`    | Fetches all available inventory items                 |
+| `verifyProduct.feature`   | Validates that the newly added product is retrievable |
 
 ---
-Configuration
-karate-config.js is the environment config file where base URLs and environment-specific variables are set.
-You can extend this file to support multiple environments (e.g., dev, QA, staging).
+
+## 🧾 Test Data
+
+Test data files are available under `inventoryapi/testData/`:
+
+| File                    | Description                             |
+|-------------------------|------------------------------------------|
+| `addProduct.json`       | Template for valid product payload       |
+| `duplicateProduct.json` | Duplicate product input for error test   |
+| `errorMessages.json`    | Expected error messages                  |
+| `filter.json`           | Data for filtering product by ID         |
+| `missingField.json`     | Incomplete payloads for negative tests   |
+| `responseData.json`     | Reference payloads to match against API  |
+
+---
+
+## ⚙️ Configuration
+
+- `karate-config.js` sets the base URL and dynamic config options.
+- You can extend this file to support multiple environments like `dev`, `qa`, etc.
+
 ---
 
 ## 🛠️ Tools Used
 
-- [Karate](https://github.com/karatelabs/karate)
-- [JUnit 5](https://junit.org/)
-- [Apache Maven](https://maven.apache.org/)
-- [Docker](https://www.docker.com/)
-- Git + GitHub
+- [Karate DSL](https://github.com/karatelabs/karate) – API test automation
+- [JUnit 5](https://junit.org/) – Test runner
+- [Apache Maven](https://maven.apache.org/) – Build tool
+- [Docker](https://www.docker.com/) – For running the API locally
+- Git + GitHub – Version control and sharing
 
 ---
 
-##  Notes
+## 📌 Notes
 
-- Data is randomized to avoid failures on re-runs due to ID duplication.
+- The test data uses random IDs to ensure repeatable execution without conflicts.
+- Each feature contains two tags:
+    - `@inventory` – shared across all features for batch execution.
+    - A scenario-specific tag (e.g., `@getAll`, `@addItem`) for fine-grained test runs.
 
 ---
+
+## 📨 Submission Instructions
+
+1. Commit and push your code to a **public GitHub repository**.
+2. Include this `README.md` and the zipped test report.
+3. Share the repository link with the recruiter as instructed.

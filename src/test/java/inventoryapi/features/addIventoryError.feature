@@ -1,11 +1,11 @@
 @inventory
+  @addItemError
 Feature: Inventory API Tests
 
   Background:
     * url baseUrl
     * def duplicateData = read("../testData/duplicateProduct.json");
 
-  @addItemError
   Scenario: Add a new inventory item
     Given path '/add'
     And request duplicateData
