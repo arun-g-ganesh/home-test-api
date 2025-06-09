@@ -4,8 +4,8 @@ Feature: Inventory API Tests
 
   Background:
     * url baseUrl
-    * def missingFieldData = read("../testData/missingField.json");
-    * def errorMessage = read("../testData/errorMessages.json");
+    * def missingFieldData = read("../testData/addMissingInventory.json");
+    * def errorMessage = read("../testData/missingInventoryError.json");
 
   Scenario: Add item with missing information
     Given path '/add'

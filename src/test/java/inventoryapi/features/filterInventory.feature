@@ -4,7 +4,7 @@ Feature: Inventory API Tests
 
   Background:
     * url baseUrl
-    * def filterData = read("../testData/filter.json");
+    * def filterData = read("../testData/filterInventory.json");
 
   Scenario: Filter item by id
     Given path '/filter'

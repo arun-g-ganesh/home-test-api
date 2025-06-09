@@ -8,6 +8,7 @@ This project is a take-home API testing assignment using the **Karate BDD testin
 
 ```
 home_test_api/
+├── reports/
 ├── src/
 │   └── test/
 │       └── java/
@@ -20,16 +21,15 @@ home_test_api/
 │               │   ├── getInventory.feature
 │               │   └── verifyProduct.feature
 │               ├── testData/
-│               │   ├── addProduct.json
-│               │   ├── duplicateProduct.json
-│               │   ├── errorMessages.json
-│               │   ├── filter.json
-│               │   ├── missingField.json
-│               │   └── responseData.json
+│               │   ├── addInventory.json
+│               │   ├── addInventoryError.json
+│               │   ├── missingInventoryError.json
+│               │   ├── filterInventory.json
+│               │   ├── addMissingInventory.json
+│               │   └── getInventory.json
 │               └── InventoryTest.java
 ├── karate-config.js
 ├── pom.xml
-├── zip-karate-reports.sh
 └── README.md
 ```
 
@@ -89,17 +89,8 @@ mvn test -Dkarate.options="classpath:inventoryapi/features/addInventory.feature"
 
 ## 📦 Reports
 
-After each test run, reports are generated inside the `reports/` directory.
+Sample reports are stored inside the `reports/` directory.
 
-### 📁 To Zip the Karate Reports
-
-```bash
-./zip-karate-reports.sh
-```
-
-This will generate a `.zip` archive inside the `reports/` folder containing the Karate HTML report.
-
----
 
 ## 📑 Test Scenarios Covered
 
@@ -120,14 +111,14 @@ Each `.feature` file in `inventoryapi/features` covers a specific functionality 
 
 Test data files are available under `inventoryapi/testData/`:
 
-| File                    | Description                             |
-|-------------------------|------------------------------------------|
-| `addProduct.json`       | Template for valid product payload       |
-| `duplicateProduct.json` | Duplicate product input for error test   |
-| `errorMessages.json`    | Expected error messages                  |
-| `filter.json`           | Data for filtering product by ID         |
-| `missingField.json`     | Incomplete payloads for negative tests   |
-| `responseData.json`     | Reference payloads to match against API  |
+| File                         | Description                             |
+|------------------------------|------------------------------------------|
+| `addInventory.json`          | Template for valid product payload       |
+| `addInventoryError.json`     | Duplicate product input for error test   |
+| `missingInventoryError.json` | Expected error messages                  |
+| `filterInventory.json`       | Data for filtering product by ID         |
+| `addMissingInventory.json`   | Incomplete payloads for negative tests   |
+| `getInventory.json`          | Reference payloads to match against API  |
 
 ---
 

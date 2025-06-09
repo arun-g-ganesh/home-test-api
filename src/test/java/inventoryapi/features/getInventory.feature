@@ -4,7 +4,7 @@ Feature: Inventory API Tests
 
   Background:
     * url baseUrl
-    * def responseData = read("../testData/responseData.json");
+    * def responseData = read("../testData/getInventory.json");
 
   Scenario: Get all menu items
     When method get

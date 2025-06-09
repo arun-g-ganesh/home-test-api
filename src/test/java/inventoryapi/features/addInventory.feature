@@ -4,8 +4,8 @@ Feature: Inventory API Tests
 
   Background:
     * url baseUrl
-    * def productData = read("../testData/addProduct.json");
-    * def productId = Math.floor(Math.random() * 1000);
+    * def productData = read("../testData/addInventory.json");
+    * def productId = Math.floor(Math.random() * 1000).toString();
     * set productData.id = productId
 
   Scenario: Add a dynamically generated product
@@ -13,4 +13,4 @@ Feature: Inventory API Tests
     And request productData
     When method post
     Then status 200
-    And karate.write(productData, 'test-classes/inventoryapi/testData/addProduct.json')
+    And karate.write(productData, 'test-classes/inventoryapi/testData/addInventory.json')
