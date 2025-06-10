@@ -1,9 +1,10 @@
 @inventory
 @addMissingFields
-Feature: Inventory API Tests
+Feature: Validate Missing Inventory Fields
 
   Background:
     * url baseUrl
+    * configure headers = { 'accept': 'application/json', 'Content-Type': 'application/json' }
     * def missingFieldData = read("../testData/addMissingInventory.json");
     * def errorMessage = read("../testData/missingInventoryError.json");
 
