@@ -68,17 +68,14 @@ docker run -p 3100:3100 automaticbytes/demo-app
 
 ### ✅ Run Tests by Tag
 
+-> mvn clean command
+
 Run all inventory tests (all 6 features):
 
 ```bash
 mvn test "-Dkarate.options=--tags @inventory"
 ```
 
-Run only a specific scenario using its tag (e.g., `@getAll`):
-
-```bash
-mvn test "-Dkarate.options=--tags @getAll"
-```
 ### ✅ Run Tests by Feature File
 
 ```bash
