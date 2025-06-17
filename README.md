@@ -68,7 +68,9 @@ docker run -p 3100:3100 automaticbytes/demo-app
 
 ### ✅ Run Tests by Tag
 
--> mvn clean command
+```bash
+mvn clean 
+``` 
 
 Run all inventory tests (all 6 features):
 
